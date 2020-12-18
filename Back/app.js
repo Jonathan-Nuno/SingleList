@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors')
 // const path = require('path');
 
 const items = require('./routes/api/items');
@@ -8,6 +9,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 // Connect to Mongo
 const db = require('./config/keys').mongoURI;
