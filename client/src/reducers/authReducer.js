@@ -23,6 +23,7 @@ export default function foo(state = initialState, action) {
             };
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
+            localStorage.setItem('token', action.payload.token)
             return {
                 ...state,
                 ...action.payload,
@@ -41,7 +42,7 @@ export default function foo(state = initialState, action) {
                 isAuthenticated: false,
                 isLoading: false
             }
-            default:
-                return state;
+        default:
+            return state;
     }
 }

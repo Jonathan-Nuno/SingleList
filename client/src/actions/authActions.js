@@ -14,12 +14,45 @@ export const loadUser = () => (dispatch, getState) => {
             payload: res.data
         }))
         .catch(err => {
-            dispatch(returnErrors);
+            dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: AUTH_ERROR
             })
         });
 }
+
+// Register User
+export const register = ({ name, email, password }) => dispatch => {
+    // Headers
+    const config = {
+        headers: {
+            'COntent-Type': 'application/json'
+        }
+    }
+
+    // Request body
+    const body = JSON.stringify({ name, email, password});
+
+    axios.post('https://mern-stack-sl.herokuapp.com/api/users', body, config)
+    .then(res => dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data
+    }))
+    .catch(err => {
+        dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'));
+        dispatch({
+            type: REGISTER_FAIL
+        })
+    })
+
+}
+
+// Logout User
+export const logout = () => {
+    return {
+        type: LOGOUT_SUCCESS
+    };
+};
 
 // setup config/headers and token
 export const tokenConfig = getState => {
