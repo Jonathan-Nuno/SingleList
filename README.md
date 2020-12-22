@@ -1,5 +1,4 @@
 <h1> SingleList </h1>
-    <img src=''>
   <img src="images/SingleList.png" width=290 height=230>
 
 <h2> Summary </h2>
